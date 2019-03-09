@@ -60,15 +60,16 @@ app.post('/answer/:id', (req, res) => {
   const {answer} = req.body;
 
   const question = questions.filter(q => (q.id === parseInt(req.params.id)));
-  if (questions.length > 1) return res.status(500).send();
-  if (questions.length === 0) return res.status(404).send();
+  if (question.length > 1) return res.status(500).send();
+  if (question.length === 0) return res.status(404).send();
 
-  questions[0].answers.push({
+  question[0].answers.push({
     answer,
   });
 
   res.status(200).send();
 });
+
 
 //start
 app.listen(8081, () => {
